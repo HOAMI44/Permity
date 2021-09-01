@@ -1,0 +1,83 @@
+﻿using backend.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Npgsql;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace backend.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class KSVController : Controller
+    {
+        private readonly IConfiguration _configuration;
+
+        private string KSV = "";
+        public KSVController(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
+
+
+        //api/KSV/all
+        [HttpGet("all")]
+        public JsonResult all(string kurzzeichen)
+        {
+            string query = @"select ""K"".*, ""B"".""BETRIEBSBEREICH"" from ""Mitarbeiter"" ""M"" 
+                            left outer join ""Teamzuordnung"" ""T"" on concat (""M"".""ABTEILUNG"", ' ', ""M"".""TEAM"") = ""T"".""TEAM_KURZ"" 
+                            left outer join ""KSV_Struktur"" ""K"" on ""T"".""KKS_STANDORT"" = ""K"".""KSV""
+                            left outer join ""Betriebsbereich"" ""B"" on ""T"".""KKS_STANDORT"" = ""B"".""TECHNISCHER_PLATZ""
+                            where ""M"".""KURZZEICHEN"" = @kurzzeichen";
+
+            DataTable table = new DataTable();
+            string sqlDataSource = _configuration.GetConnectionString("AppCon");
+            NpgsqlDataReader myReader;
+
+            using (NpgsqlConnection myCon = new NpgsqlConnection(sqlDataSource))
+            {
+                myCon.Open();
+                using (NpgsqlCommand myCommand = new NpgsqlCommand(query, myCon))
+                {
+                    myCommand.Parameters.AddWithValue("@kurzzeichen", kurzzeichen);
+                    myReader = myCommand.ExecuteReader();
+                    table.Load(myReader);
+
+                    myReader.Close();
+                    myCon.Close();
+                }
+            }
+            return new JsonResult(table);
+        }
+
+        //api/KSV/select
+        [HttpGet("select")]
+        public JsonResult getKSV(string ksv, int ebene)
+        {
+            string query = @"select ""K"".*, ""B"".""BETRIEBSBEREICH"" from ""KSV_Struktur"" ""K"", ""Betriebsbereich"" ""B""  where ""KSV"" like @ksv and ""EBENE"" = @ebene";
+
+            DataTable table = new DataTable();
+            string sqlDataSource = _configuration.GetConnectionString("AppCon");
+            NpgsqlDataReader myReader;
+
+            using (NpgsqlConnection myCon = new NpgsqlConnection(sqlDataSource))
+            {
+                myCon.Open();
+                using (NpgsqlCommand myCommand = new NpgsqlCommand(query, myCon))
+                {
+                    myCommand.Parameters.AddWithValue("@ebene", ebene);
+                    myCommand.Parameters.AddWithValue("@ksv", ksv + "%");
+                    myReader = myCommand.ExecuteReader();
+                    table.Load(myReader);
+
+                    myReader.Close();
+                    myCon.Close();
+                }
+            }
+            return new JsonResult(table);
+        }
+    }
+}
