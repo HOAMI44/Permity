@@ -1,7 +1,6 @@
-version: '3.8'
+version: "3.8"
 
-services: 
-  
+services:
   pgadmin:
     image: dpage/pgadmin4
     container_name: pgadmin4_container
@@ -26,7 +25,7 @@ services:
     volumes:
       - db_data:/var/lib/postgresql/data
     ports:
-      - '5432:5432'
+      - "5432:5432"
     networks:
       example-network:
         ipv4_address: 172.16.238.11
@@ -34,33 +33,27 @@ services:
   backend:
     image: netcore
     container_name: backend_container
-    build: 
+    build:
       context: ./backend
-      args:
-        - http_proxy=http://egvbrvproxy1v1.egv.at:8081
-        - https_proxy=http://egvbrvproxy1v1.egv.at:8081
-    restart: unless-stopped   
+    restart: unless-stopped
     ports:
-      - '8090:80'
+      - "8090:80"
     networks:
       example-network:
         ipv4_address: 172.16.238.12
 
   frontend:
-      image: nextjs
-      container_name: frontend_container
-      build:
-        context: ./frontend
-        args:
-          - http_proxy=http://egvbrvproxy1v1.egv.at:8081
-          - https_proxy=http://egvbrvproxy1v1.egv.at:8081
-      restart: unless-stopped
-      
-      ports:
-        - 3000:3000
-      networks:
-        example-network:
-          ipv4_address: 172.16.238.13
+    image: nextjs
+    container_name: frontend_container
+    build:
+      context: ./frontend
+    restart: unless-stopped
+
+    ports:
+      - 3000:3000
+    networks:
+      example-network:
+        ipv4_address: 172.16.238.13
 
 networks:
   example-network:
@@ -71,7 +64,5 @@ networks:
       config:
         - subnet: 172.16.238.0/24
 
-volumes: 
-  db_data: 
-
-
+volumes:
+  db_data:
