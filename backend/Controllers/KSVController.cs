@@ -16,7 +16,6 @@ namespace backend.Controllers
     {
         private readonly IConfiguration _configuration;
 
-        private string KSV = "";
         public KSVController(IConfiguration configuration)
         {
             _configuration = configuration;
