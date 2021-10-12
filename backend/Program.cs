@@ -15,13 +15,11 @@ namespace backend
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();
-            Trigger();
-            
         }
 
         static async Task Trigger()
         {
-            const string connString = "Server=172.16.238.1;Database=postgres;Port=5432;User Id=postgres;Password=postgres";
+            const string connString = "Server=172.16.238.11;Database=postgres;Port=5432;User Id=postgres;Password=postgres";
 
             await using var conn = new NpgsqlConnection(connString);
             await conn.OpenAsync();
