@@ -9,13 +9,13 @@ namespace backend.Models
     {
         public int id { get; set; }
 
-        public string fk_ksv { get; set; }
+        public string ksv { get; set; }
 
         public string auftraggeber { get; set; }
 
         public string auftragnehmer { get; set; }
 
-        public string fk_sperren { get; set; }
+        public string sperren { get; set; }
 
         public string kommentar { get; set; }
 

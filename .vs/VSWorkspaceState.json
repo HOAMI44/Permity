@@ -1,0 +1,11 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\backend",
+    "\\backup",
+    "\\database",
+    "\\frontend",
+    "\\postgres-data"
+  ],
+  "PreviewInSolutionExplorer": false
+}
