@@ -10,7 +10,6 @@ using System.Threading.Tasks;
 
 namespace backend.Controllers
 {
-    //test 10
     [Route("api/[controller]")]
     [ApiController]
     public class AuftragController : Controller
