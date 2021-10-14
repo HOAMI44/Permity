@@ -2,10 +2,13 @@
   "ExpandedNodes": [
     "",
     "\\backend",
+    "\\backend\\bin",
+    "\\backend\\Controllers",
     "\\backup",
     "\\database",
     "\\frontend",
     "\\postgres-data"
   ],
+  "SelectedNode": "\\backend\\Models",
   "PreviewInSolutionExplorer": false
 }
