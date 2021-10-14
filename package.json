@@ -1,0 +1,22 @@
+{
+  "name": "permity",
+  "version": "1.0.0",
+  "description": "permity",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/da-quang/Permity.git"
+  },
+  "author": "Amir",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/da-quang/Permity/issues"
+  },
+  "homepage": "https://github.com/da-quang/Permity#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.13"
+  }
+}
