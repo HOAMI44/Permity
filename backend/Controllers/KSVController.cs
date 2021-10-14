@@ -16,7 +16,6 @@ namespace backend.Controllers
     {
         private readonly IConfiguration _configuration;
 
-        private string KSV = "";
         public KSVController(IConfiguration configuration)
         {
             _configuration = configuration;
@@ -27,10 +26,9 @@ namespace backend.Controllers
         [HttpGet("all")]
         public JsonResult all(string kurzzeichen)
         {
-            string query = @"select ""K"".*, ""B"".""BETRIEBSBEREICH"" from ""Mitarbeiter"" ""M"" 
+            string query = @"select ""K"".* from ""Mitarbeiter"" ""M"" 
                             left outer join ""Teamzuordnung"" ""T"" on concat (""M"".""ABTEILUNG"", ' ', ""M"".""TEAM"") = ""T"".""TEAM_KURZ"" 
                             left outer join ""KSV_Struktur"" ""K"" on ""T"".""KKS_STANDORT"" = ""K"".""KSV""
-                            left outer join ""Betriebsbereich"" ""B"" on ""T"".""KKS_STANDORT"" = ""B"".""TECHNISCHER_PLATZ""
                             where ""M"".""KURZZEICHEN"" = @kurzzeichen";
 
             DataTable table = new DataTable();
@@ -57,7 +55,7 @@ namespace backend.Controllers
         [HttpGet("select")]
         public JsonResult getKSV(string ksv, int ebene)
         {
-            string query = @"select ""K"".*, ""B"".""BETRIEBSBEREICH"" from ""KSV_Struktur"" ""K"", ""Betriebsbereich"" ""B""  where ""KSV"" like @ksv and ""EBENE"" = @ebene";
+            string query = @"select ""K"".* from ""KSV_Struktur"" ""K"" where ""KSV"" like @ksv and ""EBENE"" = @ebene";
 
             DataTable table = new DataTable();
             string sqlDataSource = _configuration.GetConnectionString("AppCon");

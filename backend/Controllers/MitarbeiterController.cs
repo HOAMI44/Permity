@@ -22,7 +22,6 @@ namespace backend.Controllers
             _configuration = configuration;
         }
 
-
         //api/Mitarbeiter/all
         [HttpGet("all")]
         public JsonResult findAll()
@@ -48,11 +47,11 @@ namespace backend.Controllers
             return new JsonResult(table);
         }
 
-        //api/Mitarbeiter/find/{id}
-        [HttpGet("find/{id}")]
-        public JsonResult FindById(int id)
+        //api/Mitarbeiter/find
+        [HttpGet("find")]
+        public JsonResult FindById(string name)
         {
-            string query = @"select * from ""Mitarbeiter"" where ""ID"" = @id";
+            string query = @"select ""ID"", ""KURZZEICHEN"", ""NAME"", ""PERSONALNR"", ""ABTEILUNG"", ""TEAM"", ""BEREICH"" from ""Mitarbeiter"" where ""NAME"" = @name or ""KURZZEICHEN"" = @name";
 
             DataTable table = new DataTable();
             string sqlDataSource = _configuration.GetConnectionString("AppCon");
@@ -62,7 +61,7 @@ namespace backend.Controllers
                 myCon.Open();
                 using (NpgsqlCommand myCommand = new NpgsqlCommand(query, myCon))
                 {
-                    myCommand.Parameters.AddWithValue("@id", id);
+                    myCommand.Parameters.AddWithValue("@name", name);
                     myReader = myCommand.ExecuteReader();
                     table.Load(myReader);
 
@@ -77,7 +76,7 @@ namespace backend.Controllers
         [HttpGet("login")]
         public JsonResult Login(string name, string kurzzeichen)
         {
-            string query = @"select * from ""Mitarbeiter"" where ""KURZZEICHEN"" = @kurzzeichen and ""NAME"" = @name";
+            string query = @"select ""ID"", ""KURZZEICHEN"", ""NAME"", ""PERSONALNR"", ""ABTEILUNG"", ""TEAM"", ""BEREICH"" from ""Mitarbeiter"" where ""KURZZEICHEN"" = @kurzzeichen and ""NAME"" = @name";
 
             DataTable table = new DataTable();
             string sqlDataSource = _configuration.GetConnectionString("AppCon");

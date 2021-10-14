@@ -1,25 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\NGUDA\\Desktop\\app\\backend\\backend.csproj": {}
+    "C:\\Users\\daqua\\OneDrive\\Desktop\\app\\backend\\backend.csproj": {}
   },
   "projects": {
-    "C:\\Users\\NGUDA\\Desktop\\app\\backend\\backend.csproj": {
+    "C:\\Users\\daqua\\OneDrive\\Desktop\\app\\backend\\backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\NGUDA\\Desktop\\app\\backend\\backend.csproj",
+        "projectUniqueName": "C:\\Users\\daqua\\OneDrive\\Desktop\\app\\backend\\backend.csproj",
         "projectName": "backend",
-        "projectPath": "C:\\Users\\NGUDA\\Desktop\\app\\backend\\backend.csproj",
-        "packagesPath": "C:\\Users\\NGUDA\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\NGUDA\\Desktop\\app\\backend\\obj\\",
+        "projectPath": "C:\\Users\\daqua\\OneDrive\\Desktop\\app\\backend\\backend.csproj",
+        "packagesPath": "C:\\Users\\daqua\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\daqua\\OneDrive\\Desktop\\app\\backend\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
           "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\NGUDA\\NuGet.Config",
-          "C:\\Users\\NGUDA\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\daqua\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
@@ -28,6 +27,7 @@
           "net5.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -62,6 +62,12 @@
               "target": "Package",
               "version": "[1.1.0, )"
             },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.10, )"
+            },
             "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
               "target": "Package",
               "version": "[1.10.13, )"
@@ -93,7 +99,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.206\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     }
